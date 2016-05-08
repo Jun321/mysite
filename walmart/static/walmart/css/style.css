@@ -3,6 +3,26 @@
     padding:0;
 }
 
+#form1{
+    font-family: 黑体;
+    color: darkseagreen;
+
+}
+#btn1{
+    position: relative;
+    margin-left: 50px;
+    margin-top:15px;
+    background-color: aliceblue;
+}
+#submit1{
+    position: relative;
+    margin-left: 50px;
+    margin-top:15px;
+    background-color: aliceblue;
+}
+h4{
+    text-shadow:4px 3px 3px #46659e;
+}
 #part1{
     background-color: #5bc0de;
     width:100%;

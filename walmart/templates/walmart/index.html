@@ -6,38 +6,83 @@
     <title>Data mining</title>
     <link type="text/css" rel="stylesheet" href="{% static 'walmart/css/style.css' %}" />
     <link type="text/css" rel="stylesheet" href="{% static 'walmart/css/bootstrap.min.css' %}" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="{% static 'walmart/js/jquery.min.js' %}"></script>
     <script src="{% static 'walmart/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" >
+        $(document).ready(function(){
+            $("#btt").click(function(){
+                var $btt = $(this);
+                $btt.button('loading');
+                setTimeout(function(){
+                    $btt.button('reset');
+                }, 5000);
+                $.get("method",function(data,status){
+                    alert("Data: " + data + "\nStatus: " + status);
+                });
+            })
+        });
 
+    </script>
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#" >Walmart</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                <li class="active"><a href="index.html">Home</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Content<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Page 1-1</a></li>
-                        <li><a href="#">Page 1-2</a></li>
-                        <li><a href="#">Page 1-3</a></li>
+                        <li><a href="#part3">Background</a></li>
+                        <li><a href="#part3">Status</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Page 2</a></li>
-                <li><a href="#">Page 3</a></li>
+                <li><a href="#">Project</a></li>
+                <li><a href="#">Summary</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                <div class="modal fade" id="myModal1" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Please login</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="" id="form1">
+                                    Username:
+                                    <label>
+                                        <input type="text" name="Name" />
+                                    </label>
+                                    <br />
+                                    Password:
+                                    <label>
+                                        <input type="text" name="Password"/>
+                                    </label>
+                                    <br/>
+                                    <button id="btn1" data-dismiss="modal">取消登录</button>
+                                    <input type="submit" value="Submit" id="submit1" />
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                </li>
+
             </ul>
         </div>
     </nav>
 </header>
 <div id="part1">
-    <button id="bt" class="btn btn-outline-inverse btn-lg" >Get started</button>
+    <button id="bt" class="btn btn-outline-inverse btn-lg" ><a href="#part3">Get started</a></button>
 </div>
     <div class="container" id="part2">
         <div class="row">
@@ -112,13 +157,14 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Step1</h4>
+                        <h4 class="modal-title">Project</h4>
                     </div>
                     <div class="modal-body">
-                        <p >正在连接服务器.请稍等.......</p>
+                        <button type="button" class="btn btn-default " data-am-loading="{spinner: 'circle-o-notch', loadingText: '加载中...}" id="btt">start......</button>
+                        <p id="pp"></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" >Continue</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
 
