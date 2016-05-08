@@ -1,28 +1,40 @@
 from django.shortcuts import render, redirect
 import time
 from django.http import HttpResponse, JsonResponse
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+
+from .forms import UserForm
 from .models import Comment
 
 def index(request):
-	return render(request, 'walmart/index.html', )
+	form = UserForm()
+	return render(request, 'walmart/index.html', {'form': form})
 
-def login(request):
-	username = request.POST['username']
-	password = request.POST['password']
-	user = authenticate(username=username, password=password)
-	if user is not None:
-		if user.is_active:
-			login(request, user)
-			return redirect('walmart/index.html')
-			# Redirect to a success page.
+def login_method(request):
+	if request.method == 'POST':
+		form = UserForm(request.POST)
+		if form.is_valid():
+			un = form.cleaned_data['username']
+			pw = form.cleaned_data['password']
+			user = authenticate(username=un, password=pw)
+			if user is not None:
+				if user.is_active:
+					login(request, user)
+					return redirect('/walmart')
+					# Redirect to a success page.
+				else:
+					# Return a 'disabled account' error message
+					print('not_active')
+					return HttpResponse('not_active')
+
+			else:
+				print('no_user')
+				return HttpResponse('no_user')
+				# Return an 'invalid login' error message
 		else:
-		# Return a 'disabled account' error message
-			print('1')
-
-	else:
-		print('2')
-	# Return an 'invalid login' error message.
+			print('form_is_not_valid')
+			return HttpResponse('form_is_not_valid')
 
 def logout(request):
     logout(request)

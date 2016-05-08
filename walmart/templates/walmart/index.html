@@ -29,6 +29,11 @@
 <header>
     <nav class="navbar navbar-inverse ">
         <div class="container-fluid">
+            {% if user.is_authenticated %}
+                <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+            {% else %}
+                <p>Welcome, new user. Please log in.</p>
+            {% endif %}
             <div class="navbar-header">
                 <a class="navbar-brand" href="#" >Walmart</a>
             </div>
@@ -57,19 +62,12 @@
                     <h4 class="modal-title">Please login</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="" id="form1">
-                        Username:
-                        <label>
-                            <input type="text" name="Name" />
-                        </label>
-                        <br />
-                        Password:
-                        <label>
-                            <input type="text" name="Password"/>
-                        </label>
+                    <form method="post" action="{% url 'walmart:login' %}" id="form1">
+                        {% csrf_token %}
+                        {{ form }}
                         <br/>
                         <a href="#" class="button button-glow button-border button-rounded button-primary" data-dismiss="modal">Cancel</a>
-                        <a href="#" class="button button-glow button-rounded button-raised button-primary">Submit</a>
+                        <input type="submit" value="Submit" class="button button-glow button-rounded button-raised button-primary">
                     </form>
                 </div>
                 <div class="modal-footer">
