@@ -1,0 +1,188 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data mining</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'walmart/css/style.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'walmart/css/bootstrap.min.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="{% static 'walmart/js/bootstrap.min.js' %}"></script>
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#" >Walmart</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Page 1-1</a></li>
+                        <li><a href="#">Page 1-2</a></li>
+                        <li><a href="#">Page 1-3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div id="part1">
+    <button id="bt" class="btn btn-outline-inverse btn-lg" >Get started</button>
+</div>
+    <div class="container" id="part2">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{% static 'walmart/img/img.png' %}" />
+                </div>
+            <div class="col-md-6">
+        <h1 class="h"> Welcome to the "Data ming house"</h1>
+        <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
+                <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
+                <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
+                <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
+                <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
+                <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="part3">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{% static 'walmart/img/img1.jpg' %}" />
+            </div>
+            <div class="col-md-6">
+                <h1> Background</h1>
+                <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                <button id="bt1"  ><span>Read more</span></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="part4">
+        <div class="row">
+            <div class="col-md-6">
+                <h1> Status</h1>
+                <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                <button id="bt2"  ><span>Read more</span></button>
+            </div>
+            <div class="col-md-6">
+            <img src="{% static 'walmart/img/img1.jpg' %}" />
+        </div>
+        </div>
+    </div>
+
+<div  id="part5">
+    <h1>Project</h1>
+    <div>
+        <img src="{% static 'walmart/img/img2.png' %}">
+    </div>
+    <div id="subd">
+        <h2>How does it to work?</h2>
+        <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwgggggggggggggggggggggggggggggggggggg</p>
+        <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwgggggggggggggggggggggggggggggggggggg</p>
+        <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwgggggggggggggggggggggggggggggggggggg</p>
+        <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwgggggggggggggggggggggggggggggggggggg</p>
+        <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwgggggggggggggggggggggggggggggggggggg</p>
+        <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwgggggggggggggggggggggggggggggggggggg</p>
+        <button  data-toggle="modal" data-target="#myModal" id="bt3">Try it</button>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Step1</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p >正在连接服务器.请稍等.......</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" >Continue</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="container" id="part6">
+    <br>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+
+            <div class="item active">
+                <img src="{% static 'walmart/img/img1.jpg' %}" alt="Flower" width="300" height="100">
+                <div class="carousel-caption">
+                    <h3>Flowers</h3>
+                    <p>Beatiful flowers in Kolymbari, Crete.</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="{% static 'walmart/img/img1.jpg' %}" alt="Flower" width="300" height="100">
+                <div class="carousel-caption">
+                    <h3>Flowers</h3>
+                    <p>Beatiful flowers in Kolymbari, Crete.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<footer class="container-fluid text-center" id="part7">
+   <h1>This is the end</h1>
+    <div class="container" >
+        <div class="row">
+            <div class="col-md-12">
+                <p>It will showssssssssssssssssssssssssssssssssssssssssqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq</p>
+                <p>It will showssssssssssssssssssssssssssssssssssssssssqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq</p>
+                <p>It will showssssssssssssssssssssssssssssssssssssssssqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq</p>
+            </div>
+<button>Go ahead</button>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
