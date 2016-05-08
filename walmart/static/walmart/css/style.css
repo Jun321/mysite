@@ -77,20 +77,15 @@ h4{
     text-shadow:4px 3px 3px #8b8881;
 }
 #part5 img{
-    margin-top:100px;
-    margin-left:300px;
-    width:400px;
-    height:600px;
+    width:200px;
+    height:400px;
 }
-#subd{
-    margin-top:-500px;
-    margin-left:800px;
-}
+
 #bt3{
     display: inline-block;
     padding:10px 20px;
-    margin-top:150px;
-    margin-left:400px;
+    margin-top:80px;
+    margin-left:300px;
     font-size: 24px;
     cursor: pointer;
     text-align: center;
