@@ -6,6 +6,7 @@
     <title>Data mining</title>
     <link type="text/css" rel="stylesheet" href="{% static 'walmart/css/style.css' %}" />
     <link type="text/css" rel="stylesheet" href="{% static 'walmart/css/bootstrap.min.css' %}" />
+    <link type="text/css" rel="stylesheet" href="{% static 'walmart/css/button.css' %}" />
     <script src="{% static 'walmart/js/jquery.min.js' %}"></script>
     <script src="{% static 'walmart/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" >
@@ -26,7 +27,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse ">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#" >Walmart</a>
@@ -43,7 +44,7 @@
                 <li><a href="#">Summary</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" data-toggle="modal" data-target="#myModal1"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="#" ><span data-toggle="modal" data-target="#myModal1">Login</span></a></li>
             </ul>
         </div>
     </nav>
@@ -67,8 +68,8 @@
                             <input type="text" name="Password"/>
                         </label>
                         <br/>
-                        <button id="btn1" data-dismiss="modal">取消登录</button>
-                        <input type="submit" value="Submit" id="submit1" />
+                        <a href="#" class="button button-glow button-border button-rounded button-primary" data-dismiss="modal">Cancel</a>
+                        <a href="#" class="button button-glow button-rounded button-raised button-primary">Submit</a>
                     </form>
                 </div>
                 <div class="modal-footer">

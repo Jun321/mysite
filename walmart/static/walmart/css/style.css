@@ -8,18 +8,20 @@
     color: darkseagreen;
 
 }
-#btn1{
+
+/*#btn1{
     position: relative;
     margin-left: 50px;
     margin-top:15px;
     background-color: aliceblue;
-}
-#submit1{
+}*/
+/*#submit1{
     position: relative;
     margin-left: 50px;
     margin-top:15px;
     background-color: aliceblue;
-}
+}*/
+
 h4{
     text-shadow:4px 3px 3px #46659e;
 }
