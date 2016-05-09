@@ -7,9 +7,8 @@
     <link type="text/css" rel="stylesheet" href="{% static 'walmart/css/style.css' %}" />
     <link type="text/css" rel="stylesheet" href="{% static 'walmart/css/bootstrap.min.css' %}" />
     <link type="text/css" rel="stylesheet" href="{% static 'walmart/css/button.css' %}" />
-    <script src="{% static 'walmart/js/jquery.min.js' %}"></script>
-    <script src="{% static 'walmart/js/bootstrap.min.js' %}"></script>
-
+    <script src="{% static 'walmart/js/jquery.min.js' %} "></script>
+    <script src="{% static 'walmart/js/bootstrap.min.js' %} "></script>
     <script type="text/javascript" >
         $(document).ready(function(){
             $("#btt").click(function(){
@@ -51,36 +50,46 @@
                 $("#myCarousel").carousel(2);
             });
         });
-    </script>
+        </script>
 </head>
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
 <header>
-    <nav class="navbar navbar-inverse " >
-        <div class="container-fluid">
-            {% if user.is_authenticated %}
-                <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
-            {% else %}
-                <p>Welcome, new user. Please log in.</p>
-            {% endif %}
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#" >Walmart</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="index.html">Home</a></li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Content<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#part3">Background</a></li>
-                        <li><a href="#part3">Status</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Project</a></li>
-                <li><a href="#">Summary</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" ><span data-toggle="modal" data-target="#myModal1">Login</span></a></li>
-            </ul>
-        </div>
-    </nav>
+    <nav class="navbar navbar-inverse navbar-fixed-top" >
+       <div class="container-fluid">
+           {% if user.is_authenticated %}
+               <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+           {% else %}
+               <p>Welcome, new user. Please log in.</p>
+           {% endif %}
+           <div class="navbar-header">
+           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+               <a class="navbar-brand" href="#" >Walmart</a>
+           </div>
+           <div class="collapse navbar-collapse" id="myNavbar">
+           <ul class="nav navbar-nav">
+               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Content<span class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                       <li><a href="#part3">Background</a></li>
+                       <li><a href="#part3">Status</a></li>
+                   </ul>
+               </li>
+               <li><a href="#part5">Project</a></li>
+               <li><a href="#myCarousel">Summary</a></li>
+           </ul>
+           <ul class="nav navbar-nav navbar-right">
+               <li><a href="#" ><span data-toggle="modal" data-target="#myModal1">^_^Login</span></a></li>
+           </ul>
+       </div>
+           </div>
+       </nav>
+
+
+
+
     <div class="modal fade" id="myModal1" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -130,7 +139,7 @@
     <div class="container" id="part3">
         <div class="row">
             <div class="col-md-6">
-                <img src="{% static 'walmart/img/img1.jpg' %}" />
+                <img src="{% static 'walmart/img/img5.png' %}" />
             </div>
             <div class="col-md-6">
                 <h1> Background</h1>
@@ -156,7 +165,7 @@
                 <button id="bt2"  ><span>Read more</span></button>
             </div>
             <div class="col-md-6">
-            <img src="{% static 'walmart/img/img1.jpg' %}" />
+            <img src="{% static 'walmart/img/img6.jpg' %}" />
         </div>
         </div>
     </div>
