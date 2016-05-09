@@ -10,7 +10,7 @@
     <script src="{% static 'walmart/js/jquery.min.js' %} "></script>
     <script src="{% static 'walmart/js/bootstrap.min.js' %} "></script>
     <script type="text/javascript" >
-        $(document).ready(function(){
+     /* $(document).ready(function(){
             $("#btt").click(function(){
                 var $btt = $(this);
                 $btt.button('loading');
@@ -21,7 +21,32 @@
                     alert("Data: " + data + "\nStatus: " + status);
                 });
             })
-        });
+        });*/
+
+      function loadDoc() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4){
+                    try{
+                   if(  xhr.status == 200) {
+                       document.getElementById("p11").innerHTML = xhr.responseText;
+                   }else {
+                       document.getElementById("p11").innerHTML = "failed";
+                    }
+                } catch(ex){
+
+                    }
+                }
+            };
+            xhr.open("GET", "method", true);
+            xhr.timeout = 9000;
+            xhr.ontimeoout = function(){
+             aler("Failed!")} ;
+              xhr.send();
+      }
+
+
+
         $(function(){
             // 初始化轮播
             $(".start-slide").click(function(){
@@ -89,7 +114,6 @@
 
 
 
-
     <div class="modal fade" id="myModal1" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
@@ -98,7 +122,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Please login</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" >
                     <form method="post" action="{% url 'walmart:login' %}" id="form1">
                         {% csrf_token %}
                         {{ form }}
@@ -148,7 +172,27 @@
                 <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
                 <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
                 <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
-                <button id="bt1"  ><span>Read more</span></button>
+                <button  data-toggle="modal" data-target="#myModal2" id="bt1"><span>Read more</span></button>
+                <div class="modal fade" id="myModal2" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Background</h4>
+                            </div>
+                            <div class="modal-body">
+                              <P>1.lovelove</P>
+                                <P>2.lovelove</P>
+                                <P>2.lovelove</P>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -162,7 +206,27 @@
                 <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
                 <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
                 <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
-                <button id="bt2"  ><span>Read more</span></button>
+                <button  data-toggle="modal" data-target="#myModal3" id="bt2"><span>Read more</span></button>
+                <div class="modal fade" id="myModal3" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Status</h4>
+                            </div>
+                            <div class="modal-body">
+                                <P>1.lovelove</P>
+                                <P>2.lovelove</P>
+                                <P>2.lovelove</P>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
             <img src="{% static 'walmart/img/img6.jpg' %}" />
@@ -195,8 +259,8 @@
                         <h4 class="modal-title">Project</h4>
                     </div>
                     <div class="modal-body">
-                        <button type="button" class="btn btn-default " data-am-loading="{spinner: 'circle-o-notch', loadingText: '加载中...}" id="btt">start......</button>
-                        <p id="pp"></p>
+                        <p id="p11"></p>
+                        <button type="button" class="btn btn-default " data-am-loading="{spinner: 'circle-o-notch', loadingText: '加载中...}"  id="btt" onclick="loadDoc()" >start......</button>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

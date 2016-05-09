@@ -47,5 +47,8 @@ def show_presentation(request):
 
 def method(request):
 	name_dict = {'sjl': 'Love xyw', 'xyw': 'Love sjl'}
+	time.sleep(10)
 	return JsonResponse(name_dict)
+	
+
 	
