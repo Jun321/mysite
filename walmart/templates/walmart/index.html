@@ -9,6 +9,7 @@
     <link type="text/css" rel="stylesheet" href="{% static 'walmart/css/button.css' %}" />
     <script src="{% static 'walmart/js/jquery.min.js' %} "></script>
     <script src="{% static 'walmart/js/bootstrap.min.js' %} "></script>
+    <script src="{% static 'walmart/js/jquery.singlePageNav.min.js' %} "></script>
     <script type="text/javascript" >
      /* $(document).ready(function(){
             $("#btt").click(function(){
@@ -75,44 +76,67 @@
                 $("#myCarousel").carousel(2);
             });
         });
+
+
+     // Check scroll position and add/remove background to navbar
+     function checkScrollPosition() {
+         if($(window).scrollTop() > 50) {
+             $(".fixed-header").addClass("scroll");
+         } else {
+             $(".fixed-header").removeClass("scroll");
+         }
+     }
+
+     $(document).ready(function () {
+         // Single page nav
+         $('.fixed-header').singlePageNav({
+             offset: 59,
+             filter: ':not(.external)',
+             updateHash: true
+         });
+
+         checkScrollPosition();
+
+         // nav bar
+         $('.navbar-toggle').click(function(){
+             $('.main-menu').toggleClass('show');
+         });
+
+         $('.main-menu a').click(function(){
+             $('.main-menu').removeClass('show');
+         });
+     });
+
+     $(window).on("scroll", function() {
+         checkScrollPosition();
+     });
         </script>
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<body>
 <header>
-    <nav class="navbar navbar-inverse navbar-fixed-top" >
-       <div class="container-fluid">
-           {% if user.is_authenticated %}
-               <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
-           {% else %}
-               <p>Welcome, new user. Please log in.</p>
-           {% endif %}
-           <div class="navbar-header">
-           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-               <a class="navbar-brand" href="#" >Walmart</a>
-           </div>
-           <div class="collapse navbar-collapse" id="myNavbar">
-           <ul class="nav navbar-nav">
-               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Content<span class="caret"></span></a>
-                   <ul class="dropdown-menu">
-                       <li><a href="#part3">Background</a></li>
-                       <li><a href="#part3">Status</a></li>
-                   </ul>
-               </li>
-               <li><a href="#part5">Project</a></li>
-               <li><a href="#myCarousel">Summary</a></li>
-           </ul>
-           <ul class="nav navbar-nav navbar-right">
-               <li><a href="#" ><span data-toggle="modal" data-target="#myModal1">^_^Login</span></a></li>
-           </ul>
-       </div>
-           </div>
-       </nav>
-
-
+    <!--navbar-->
+<div class="fixed-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Data mining</a>
+        </div>
+        <nav class="main-menu">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#part2">Background</a></li>
+                <li><a href="#part3">Status</a></li>
+                <li><a href="#part4">Project</a></li>
+                <li><a href="#myCarousel">Summary</a></li>
+                <li><a href="#" ><span data-toggle="modal" data-target="#myModal1">^_^Login</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
 
     <div class="modal fade" id="myModal1" role="dialog">
         <div class="modal-dialog">
@@ -138,29 +162,29 @@
         </div>
     </div>
 </header>
-<div id="part1">
-    <a href="#" class="button button-glow button-rounded button-raised button-caution" id="bt">Get Started!</a>
-</div>
-    <div class="container" id="part2">
+    <div class="container" id="part1">
         <div class="row">
             <div class="col-md-6">
                 <img src="{% static 'walmart/img/img.png' %}" />
                 </div>
             <div class="col-md-6">
-        <h1 class="h"> Welcome to the "Data ming house"</h1>
+        <h2 class="h"> Welcome to the "Data ming house"</h2>
+                <br>
         <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
                 <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
                 <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
                 <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
                 <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
                 <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
-
-
             </div>
         </div>
+        <a href="#" class="button button-glow button-rounded button-raised button-caution" id="bt">Go ahead</a>
     </div>
 
-    <div class="container" id="part3">
+
+
+    <div class="container" id="part2">
+
         <div class="row">
             <div class="col-md-6">
                 <img src="{% static 'walmart/img/img5.png' %}" />
@@ -197,7 +221,8 @@
         </div>
     </div>
 
-    <div class="container" id="part4">
+    <div class="container" id="part3">
+
         <div class="row">
             <div class="col-md-6">
                 <h1> Status</h1>
@@ -234,7 +259,7 @@
         </div>
     </div>
 
-<div  id="part5">
+<div  id="part4">
     <h1>Project</h1>
     <div class="container">
         <div class="row">
@@ -315,7 +340,7 @@
 </div>
 
 
-<footer class="container-fluid text-center" id="part7">
+<footer class="container-fluid text-center" id="part5">
    <h1>Please contact us!</h1>
     <div class="container" >
         <div class="row">
