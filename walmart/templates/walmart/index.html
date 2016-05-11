@@ -125,66 +125,15 @@
 
 
      // Check scroll position and add/remove background to navbar
-     function checkScrollPosition() {
-         if($(window).scrollTop() > 50) {
-             $(".fixed-header").addClass("scroll");
-         } else {
-             $(".fixed-header").removeClass("scroll");
-         }
-     }
 
-     $(document).ready(function () {
-         // Single page nav
-         $('.fixed-header').singlePageNav({
-             offset: 59,
-             filter: ':not(.external)',
-             updateHash: true
-         });
-
-         checkScrollPosition();
-
-         // nav bar
-         $('.navbar-toggle').click(function(){
-             $('.main-menu').toggleClass('show');
-         });
-
-         $('.main-menu a').click(function(){
-             $('.main-menu').removeClass('show');
-         });
-     });
-
-     $(window).on("scroll", function() {
-         checkScrollPosition();
-     });
         </script>
 </head>
-<body>
-<header>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
     <!--navbar-->
-<div class="fixed-header">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Data mining</a>
-        </div>
-        <nav class="main-menu">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#part2">Background</a></li>
-                <li><a href="#part3">Status</a></li>
-                <li><a href="#part4">Project</a></li>
-                <li><a href="#myCarousel">Summary</a></li>
-                <li><a href="#" ><span data-toggle="modal" data-target="#myModal1">^_^Login</span></a></li>
-            </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="modal fade" id="myModal1" role="dialog">
+    <div class="container-fluid" style="background-color:#54cef3;color:#fff;height:150px;">
+         <img src="{% static 'walmart/img/img.png' %}" style="width:100px;height:100px;" id="img" />
+         <button class="button button-glow button-rounded button-raised button-caution" id="btn"><span data-toggle="modal" data-target="#myModal1">^_^Login</span></button>
+        <div class="modal fade" id="myModal1" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -215,27 +164,25 @@
             </div>
         </div>
     </div>
-</header>
-    <div class="container" id="part1">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="{% static 'walmart/img/img.png' %}" />
-                </div>
-            <div class="col-md-6">
-        <h2 class="h"> Welcome to the "Data ming house"</h2>
-                <br>
-        <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
-                <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
-                <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
-                <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
-                <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
-                <p class="p1">It will showssssssssssssssssssssssssssssssssssssssss</p>
-            </div>
-        </div>
-        <a href="#" class="button button-glow button-rounded button-raised button-caution" id="bt">Go ahead</a>
     </div>
 
+    <div class="container-fluid ">
+        <div class="row content">
+            <div class="col-md-2 sidenav" id="myScrollspy">
+                <ul class="nav nav-pills nav-stacked affix ">
+                    <li><a href="#part1">Home</a></li>
+                    <li><a href="#part2">Background</a></li>
+                    <li><a href="#part3">Status</a></li>
+                    <li><a href="#part4">Project</a></li>
+                    <li><a href="#myCarousel">Summary</a></li>
+                </ul>
+            </div>
 
+    <div class="col-md-9">
+        <img src="{% static 'walmart/img/img1.jpg' %}" id="part1"/>
+    <div>
+        <a href="#" class="button button-glow button-rounded button-raised button-caution" id="bt">Get Started</a>
+    </div>
 
     <div class="container" id="part2">
 
@@ -312,8 +259,7 @@
         </div>
         </div>
     </div>
-
-<div  id="part4">
+        <div  id="part4">
     <h1>Project</h1>
     <div class="container">
         <div class="row">
@@ -349,22 +295,18 @@
             </div>
         </div>
     </div>
+        </div>
     </div>
-    </div>
-
-
 </div>
 
-
 <div id="myCarousel" class="carousel slide">
-    <!-- 轮播（Carousel）指标 -->
+
     <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0"
-            class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
-    <!-- 轮播（Carousel）项目 -->
+
     <div class="carousel-inner">
         <div class="item active">
             <img src="{% static 'walmart/img/img3.jpg' %}" alt="First slide">
@@ -376,12 +318,6 @@
             <img src="{% static 'walmart/img/img3.jpg' %}" alt="Third slide">
         </div>
     </div>
-    <!-- 轮播（Carousel）导航 -->
-    <a class="carousel-control left" href="#myCarousel"
-       data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right" href="#myCarousel"
-       data-slide="next">&rsaquo;</a>
-    <!-- 控制按钮 -->
     <br/>
     <br/>
     <br/>
@@ -392,7 +328,9 @@
 
     </div>
 </div>
-
+    </div>
+        </div>
+    </div>
 
 <footer class="container-fluid text-center" id="part5">
    <h1>Please contact us!</h1>
@@ -405,7 +343,6 @@
             </div>
         </div>
     </div>
-    <a href="#" class="button button-glow button-rounded button-raised button-caution" id="btn4">Go ahead</a>
 </footer>
 </body>
 </html>
