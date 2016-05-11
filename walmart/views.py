@@ -8,8 +8,7 @@ from .forms import UserForm
 from .models import Comment
 
 def index(request):
-	form = UserForm()
-	return render(request, 'walmart/index.html', {'form': form})
+	return render(request, 'walmart/index.html',)
 
 def login_method(request):
 	if request.method == 'POST':
@@ -21,7 +20,7 @@ def login_method(request):
 			if user is not None:
 				if user.is_active:
 					login(request, user)
-					return redirect('/walmart')
+					return HttpResponse('login')
 					# Redirect to a success page.
 				else:
 					# Return a 'disabled account' error message
@@ -49,6 +48,4 @@ def method(request):
 	name_dict = {'sjl': 'Love xyw', 'xyw': 'Love sjl'}
 	time.sleep(10)
 	return JsonResponse(name_dict)
-	
-
 	
