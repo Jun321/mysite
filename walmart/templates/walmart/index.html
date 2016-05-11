@@ -27,10 +27,10 @@
 		
 		bootstrap_alert = function() {}
 		bootstrap_alert.warning = function(message) {
-            $('#alert_placeholder').html('<div class="alert"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
+            $('#alert_placeholder').html('<div class="alert alert-warning"><strong>Warning!</strong><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
         }
-		bootstrap_alert.warning = function(message) {
-            $('#alert_placeholder').html('<div class="alert"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
+		bootstrap_alert.info = function(message) {
+            $('#alert_placeholder').html('<div class="alert alert-info"><strong>Info!</strong><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
         }
 
 		$(document).ready(function(){
@@ -47,10 +47,14 @@
 					url: '{% url 'walmart:login' %}',
 					data: { username: un, password: pw },
 					success: function (data) {
-						bootstrap_alert.warning(data);
+						if(data.status == 'true'){
+							window.location.reload(true);
+						}else{
+							bootstrap_alert.info(data.message);
+						}
 					},
 					error: function (textStatus, errorThrown) {
-						bootstrap_alert.warning(textStatus)
+						bootstrap_alert.warning(textStatus.message)
 					}
 				});
 
