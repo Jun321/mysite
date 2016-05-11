@@ -9,6 +9,7 @@
     <link type="text/css" rel="stylesheet" href="{% static 'walmart/css/button.css' %}" />
     <script src="{% static 'walmart/js/jquery.min.js' %} "></script>
     <script src="{% static 'walmart/js/bootstrap.min.js' %} "></script>
+	<script src="{% static 'walmart/js/bootstrap-notify.min.js' %} "></script>
     <script src="{% static 'walmart/js/jquery.singlePageNav.min.js' %} "></script>
     <script type="text/javascript" >
      /* $(document).ready(function(){
@@ -23,7 +24,48 @@
                 });
             })
         });*/
+		
+		bootstrap_alert = function() {}
+		bootstrap_alert.warning = function(message) {
+            $('#alert_placeholder').html('<div class="alert"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
+        }
+		bootstrap_alert.warning = function(message) {
+            $('#alert_placeholder').html('<div class="alert"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>')
+        }
 
+		$(document).ready(function(){
+            $.ajaxSetup({
+				data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+			});
+			//$('[data-toggle="popover"]').popover();
+			
+			$("#form1").submit(function(e){
+				var un = $('#id_username').val()
+				var pw = $('#id_password').val()
+				$.ajax({
+					method: "POST",
+					url: '{% url 'walmart:login' %}',
+					data: { username: un, password: pw },
+					success: function (data) {
+						bootstrap_alert.warning(data);
+					},
+					error: function (textStatus, errorThrown) {
+						bootstrap_alert.warning(textStatus)
+					}
+				});
+
+				/*$.notify({
+					// options
+					message: 'Hello World', 
+					target: '_self'
+				},{
+					// settings
+					type: 'danger'
+				});*/
+				return false
+			})
+
+        });
       function loadDoc() {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
@@ -147,12 +189,20 @@
                     <h4 class="modal-title">Please login</h4>
                 </div>
                 <div class="modal-body" >
-                    <form method="post" action="{% url 'walmart:login' %}" id="form1">
+                    <form method="post" id="form1" role="form">
                         {% csrf_token %}
-                        {{ form }}
+                        <div class="form-group">
+							<label for="username">Username:</label>
+							<input type="text" class="form-control" id="id_username" name="username">
+						</div>
+						<div class="form-group">
+							<label for="pwd">Password:</label>
+							<input type="password" class="form-control" id="id_password" name="password">
+						</div>
+						<div id = "alert_placeholder"></div>
                         <br/>
                         <a href="#" class="button button-glow button-border button-rounded button-primary" data-dismiss="modal">Cancel</a>
-                        <input type="submit" value="Submit" class="button button-glow button-rounded button-raised button-primary">
+                        <input type="submit" value="Submit" class="button button-glow button-rounded button-raised button-primary" title="Dismissible popover" data-toggle="popover" data-trigger="focus" data-content="Click anywhere in the document to close this popover">
                     </form>
                 </div>
                 <div class="modal-footer">
