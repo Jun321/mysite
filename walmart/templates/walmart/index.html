@@ -168,7 +168,7 @@
              {% if user.is_authenticated %}
                 <a class="button button-glow button-rounded button-raised button-caution " id="btn1" href= '{% url 'walmart:logout' %}'>Welcome, {{ user.username }}. Logout</a>
              {% else %}
-                <button class="button button-glow button-rounded button-raised button-caution" id="btn" data-toggle="modal" data-target="#myModal1">Login</button>
+
              {% endif %}
              <!-- <button class="button button-glow button-rounded button-raised button-caution" id="btn" data-toggle="modal" data-target="#myModal1">Login</button> -->
             <div class="modal fade" id="myModal1" role="dialog">
@@ -205,9 +205,10 @@
                 </div>
             </div>
         </div>
-    <img src="{% static 'walmart/img/img.jpg' %} " style="height:750px;width: 85%;" id="img1">
+    <img src="{% static 'walmart/img/img.png' %} " style="height:750px;width: 90%;" id="img1">
+    <img src="{% static 'walmart/img/img1.png' %}"  style="width:100px;" id="img2" >
     <div class="container">
-        <a href="#" class="button button-glow button-rounded button-raised button-caution" id="bt">Get Started</a>
+        <a href="#" class="button button-glow button-rounded button-raised button-caution" id="bt" data-toggle="modal" data-target="#myModal1">Get Started</a>
     </div>
 
     {% if user.is_authenticated %}
