@@ -8,10 +8,12 @@
         <link type="text/css" rel="stylesheet" href="{% static 'walmart/css/bootstrap.min.css' %}" />
         <link type="text/css" rel="stylesheet" href="{% static 'walmart/css/button.css' %}" />
         <link type="text/css" rel="stylesheet" href="{% static 'walmart/css/animate.css' %}" />
+
         <script src="{% static 'walmart/js/jquery.min.js' %} "></script>
         <script src="{% static 'walmart/js/bootstrap.min.js' %} "></script>
     	<script src="{% static 'walmart/js/bootstrap-notify.min.js' %} "></script>
         <script src="{% static 'walmart/js/jquery.singlePageNav.min.js' %} "></script>
+
         <script type="text/javascript" >
          /* $(document).ready(function(){
                 $("#btt").click(function(){
@@ -25,19 +27,19 @@
                     });
                 })
             });*/
-    		
-    		bootstrap_alert = function() {}
-    		bootstrap_alert.warning = function(message) {
+
+         bootstrap_alert = function() {}
+         bootstrap_alert.warning = function(message) {
                 $('#alert_placeholder').html('<div class="alert alert-warning"><strong>Warning!</strong><a data-dismiss="alert"></a><span>  '+message+'</span></div>')
             }
-    		bootstrap_alert.info = function(message) {
+         bootstrap_alert.info = function(message) {
                 $('#alert_placeholder').html('<div class="alert alert-info"><strong>Info!</strong><a data-dismiss="alert"></a><span>  '+message+'</span></div>')
             }
-            bootstrap_alert.success = function(message) {
+         bootstrap_alert.success = function(message) {
                 $('#alert_placeholder').html('<div class="alert alert-success"><strong>Success!</strong><a data-dismiss="alert"></a><span>  '+message+'</span></div>')
             }
 
-            function alertTimeout(wait, type, isreload){
+         function alertTimeout(wait, type, isreload){
                 var ele = $('#alert_placeholder').children('.alert:first-child')
                 ele.addClass('animated ' + type)
                 setTimeout(function(){
@@ -47,8 +49,15 @@
                         ele.addClass('animated fadeOut');
                 }, wait);
             }
-
-    		$(document).ready(function(){
+         $(document).ready(function(){
+			$.notify({
+    					// options
+    					message: 'Welcome to the Data house!',
+    					target: '_self'
+    				},{
+    					// settings
+    					type: 'danger'
+    				});
                 $.ajaxSetup({
     				data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
     			});
@@ -87,7 +96,7 @@
     			})
 
             });
-          function loadDoc() {
+         function loadDoc() {
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState == 4){
@@ -105,13 +114,13 @@
                 xhr.open("GET", "method", true);
                 xhr.timeout = 9000;
                 xhr.ontimeoout = function(){
-                 aler("Failed!")} ;
-                  xhr.send();
-          }
+				aler("Failed!")} ;
+				xhr.send();
+			}
+         $(function(){
 
 
-
-            $(function(){
+            
                 // 初始化轮播
                 $(".start-slide").click(function(){
                     $("#myCarousel").carousel('cycle');
@@ -140,231 +149,258 @@
                 });
             });
 
-
-         // Check scroll position and add/remove background to navbar
-
-            </script>
+         $(document).ready(function(){
+             $("#b").click(function(){
+                 $("#n1").slideToggle("slow");
+                 $("#n2").slideToggle("slow");
+                 $("#n3").slideToggle(1000);
+                 $("#n4").slideToggle(2000);
+                 $("#n5").slideToggle(3000);
+             });
+         });
+        </script>
+    
     </head>
     <body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
-        <!--navbar-->
-        <div class="container-fluid" style="background-color:#54cef3;color:#fff;height:150px;">
-             <img src="{% static 'walmart/img/img.png' %}" style="width:100px;height:100px;" id="img" />
+    <!--navbar-->
+
+    <div class="container-fluid" style="height:200px;">
+             <img src="{% static 'walmart/img/logo.png' %}" id="img" />
              {% if user.is_authenticated %}
-                <a class="button button-glow button-rounded button-raised button-caution" href= '{% url 'walmart:logout' %}'>Welcome, {{ user.username }}. Logout</a>
+                <a class="button button-glow button-rounded button-raised button-caution " id="btn1" href= '{% url 'walmart:logout' %}'>Welcome, {{ user.username }}. Logout</a>
              {% else %}
                 <button class="button button-glow button-rounded button-raised button-caution" id="btn" data-toggle="modal" data-target="#myModal1">Login</button>
              {% endif %}
              <!-- <button class="button button-glow button-rounded button-raised button-caution" id="btn" data-toggle="modal" data-target="#myModal1">Login</button> -->
             <div class="modal fade" id="myModal1" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Please login</h4>
-                    </div>
-                    <div class="modal-body" >
-                        <form method="post" id="form1" role="form">
-                            {% csrf_token %}
-                            <div class="form-group">
-    							<label for="username">Username:</label>
-    							<input type="text" class="form-control" id="id_username" name="username">
-    						</div>
-    						<div class="form-group">
-    							<label for="pwd">Password:</label>
-    							<input type="password" class="form-control" id="id_password" name="password">
-    						</div>
-    						<div id = "alert_placeholder"></div>
-                            <br/>
-                            <a href="#" class="button button-glow button-border button-rounded button-primary" data-dismiss="modal">Cancel</a>
-                            <input type="submit" value="Submit" class="button button-glow button-rounded button-raised button-primary" title="Dismissible popover" data-toggle="popover" data-trigger="focus" data-content="Click anywhere in the document to close this popover">
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-    {% if user.is_authenticated %}
-        <div class="container-fluid ">
-            <div class="row content">
-                <div class="col-md-2 sidenav" id="myScrollspy">
-                    <ul class="nav nav-pills nav-stacked affix ">
-                        <li><a href="#part1">Home</a></li>
-                        <li><a href="#part2">Background</a></li>
-                        <li><a href="#part3">Status</a></li>
-                        <li><a href="#part4">Project</a></li>
-                        <li><a href="#myCarousel">Summary</a></li>
-                    </ul>
-                </div>
-
-        <div class="col-md-9">
-            <img src="{% static 'walmart/img/img1.jpg' %}" id="part1"/>
-        <div>
-            <a href="#" class="button button-glow button-rounded button-raised button-caution" id="bt">Get Started</a>
-        </div>
-    
-        <div class="container" id="part2">
-
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="{% static 'walmart/img/img5.png' %}" />
-                </div>
-                <div class="col-md-6">
-                    <h1> Background</h1>
-                    <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
-                    <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
-                    <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
-                    <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
-                    <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
-                    <button  data-toggle="modal" data-target="#myModal2" id="bt1"><span>Read more</span></button>
-                    <div class="modal fade" id="myModal2" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Background</h4>
-                                </div>
-                                <div class="modal-body">
-                                  <P>1.lovelove</P>
-                                    <P>2.lovelove</P>
-                                    <P>2.lovelove</P>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container" id="part3">
-
-            <div class="row">
-                <div class="col-md-6">
-                    <h1> Status</h1>
-                    <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
-                    <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
-                    <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
-                    <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
-                    <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
-                    <button  data-toggle="modal" data-target="#myModal3" id="bt2"><span>Read more</span></button>
-                    <div class="modal fade" id="myModal3" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Status</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <P>1.lovelove</P>
-                                    <P>2.lovelove</P>
-                                    <P>2.lovelove</P>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                <img src="{% static 'walmart/img/img6.jpg' %}" />
-            </div>
-            </div>
-        </div>
-            <div  id="part4">
-        <h1>Project</h1>
-        <div class="container">
-            <div class="row">
-            <div class="col-md-6">
-                <img src="{% static 'walmart/img/img2.png' %}">
-            </div>
-        <div class="col-md-6">
-            <h2>How does it to work?</h2>
-            <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwg</p>
-            <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwg</p>
-            <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwg</p>
-            <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</p>
-            <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwgg</p>
-            <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwgg</p>
-            <button  data-toggle="modal" data-target="#myModal" id="bt3">Try it</button>
-            <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
-                    <!-- Modal content-->
+                <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Project</h4>
+                            <h4 class="modal-title">Please login</h4>
                         </div>
-                        <div class="modal-body">
-                            <p id="p11"></p>
-                            <button type="button" class="btn btn-default " data-am-loading="{spinner: 'circle-o-notch', loadingText: '加载中...}"  id="btt" onclick="loadDoc()" >start......</button>
+
+                        <div class="modal-body" >
+                            <form method="post" id="form1" role="form">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="username">Username:</label>
+                                    <input type="text" class="form-control" id="id_username" name="username">
+    						    </div>
+
+                                <div class="form-group">
+                                    <label for="pwd">Password:</label>
+                                    <input type="password" class="form-control" id="id_password" name="password">
+    						    </div>
+
+                                <div id = "alert_placeholder"></div>
+                                <br/>
+                                <a href="#" class="button button-glow button-border button-rounded button-primary" data-dismiss="modal">Cancel</a>
+                                <input type="submit" value="Login" class="button button-glow button-rounded button-raised button-primary" title="Dismissible popover" data-toggle="popover" data-trigger="focus" data-content="Click anywhere in the document to close this popover">
+                            </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                        <div class="modal-footer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <img src="{% static 'walmart/img/img.jpg' %} " style="height:750px;width: 85%;" id="img1">
+    <div class="container">
+        <a href="#" class="button button-glow button-rounded button-raised button-caution" id="bt">Get Started</a>
+    </div>
+
+    {% if user.is_authenticated %}
+
+        <div class="container-fluid ">
+            <div class="row content">
+                <div class="col-md-2 sidenav"  id="myScrollspy">
+                    <ul class="nav nav-pills nav-stacked affix " id="n">
+                        <li><button class="button button-glow button-rounded button-raised button-caution" id="b">Up/Down</button></li>
+                        <li id="n1"><a href="#part1" >Home</a></li>
+                        <li id="n2"><a href="#part2" >Background</a></li>
+                        <li id="n3"><a href="#part3" >Status</a></li>
+                        <li id="n4"><a href="#part4" >Project</a></li>
+                        <li id="n5"><a href="#myCarousel" >Summary</a></li>
+                    </ul>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="container" id="part2">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <img src="{% static 'walmart/img/img5.png' %}" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h1> Background</h1>
+                                        <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                                        <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                                        <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                                        <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                                        <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                                        <button  data-toggle="modal" data-target="#myModal2" id="bt1"><span>Read more</span></button>
+
+                                        <div class="modal fade" id="myModal2" role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Background</h4>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <P>1.lovelove</P>
+                                                        <P>2.lovelove</P>
+                                                        <P>2.lovelove</P>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container" id="part3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h1> Status</h1>
+                                        <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                                        <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                                        <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                                        <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                                        <p>It will showssssssssssssssssssssssssssssssssssssssss</p>
+                                        <button  data-toggle="modal" data-target="#myModal3" id="bt2"><span>Read more</span></button>
+                                        <div class="modal fade" id="myModal3" role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Status</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <P>1.lovelove</P>
+                                                        <P>2.lovelove</P>
+                                                        <P>2.lovelove</P>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="{% static 'walmart/img/img6.jpg' %}" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div  id="part4">
+                                <h1>Project</h1>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <img src="{% static 'walmart/img/img2.png' %}">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h2>How does it to work?</h2>
+                                            <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwg</p>
+                                            <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwg</p>
+                                            <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwg</p>
+                                            <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</p>
+                                            <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwgg</p>
+                                            <p>wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwgg</p>
+                                            <button  data-toggle="modal" data-target="#myModal" id="bt3">Try it</button>
+                                            <div class="modal fade" id="myModal" role="dialog">
+                                                <div class="modal-dialog">
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">Project</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p id="p11"></p>
+                                                            <button type="button" class="btn btn-default " data-am-loading="{spinner: 'circle-o-notch', loadingText: '加载中...}"  id="btt" onclick="loadDoc()" >start......</button>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="myCarousel" class="carousel slide">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                                </ol>
+
+
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <img src="{% static 'walmart/img/img3.jpg' %}" alt="First slide">
+                                    </div>
+                                    <div class="item">
+                                        <img src="{% static 'walmart/img/img3.jpg' %}" alt="Second slide">
+                                    </div>
+                                    <div class="item">
+                                        <img src="{% static 'walmart/img/img3.jpg' %}" alt="Third slide">
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div style="text-align:center;">
+                                    <input type="button" class="btn prev-slide button button-glow button-rounded button-royal" value="Previous" id="btn2">
+                                    <input type="button" class="btn next-slide button button-glow button-rounded button-royal" value="Next Slide" id="btn3">
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-            </div>
-        </div>
-    </div>
 
-    <div id="myCarousel" class="carousel slide">
+   </body>
 
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-
-        <div class="carousel-inner">
-            <div class="item active">
-                <img src="{% static 'walmart/img/img3.jpg' %}" alt="First slide">
-            </div>
-            <div class="item">
-                <img src="{% static 'walmart/img/img3.jpg' %}" alt="Second slide">
-            </div>
-            <div class="item">
-                <img src="{% static 'walmart/img/img3.jpg' %}" alt="Third slide">
-            </div>
-        </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <div style="text-align:center;">
-            <input type="button" class="btn prev-slide button button-glow button-rounded button-royal" value="Previous" id="btn2">
-            <input type="button" class="btn next-slide button button-glow button-rounded button-royal" value="Next Slide" id="btn3">
-
-        </div>
-    </div>
-        </div>
-            </div>
-        </div>
     {% endif %}
+	
     <footer class="container-fluid text-center" id="part5">
-       <h1>Please contact us!</h1>
-        <div class="container" >
-            <div class="row">
-                <div class="col-md-12">
-                    <p>It will showsssssssssssssssssssssssssssssssssss</p>
-                    <p>It will showsssssssssssssssssssssssssssssssssssjjjjjjjjj</p>
-                    <p>It will showsssssssssssssssssssssssssssssssssssjjjjjjjjjjjjj</p>
-                </div>
+        <h1> Contact us!</h1>
+        <div class="row">
+            <div class="col-md-3">
+                <img src="{% static 'walmart/img/dog.jpg' %}" style="height:200px;" />
+            </div>
+            <div class="col-md-3">
+                <h1>Junkiller</h1>
+                <p>Walmart</p>
+            </div>
+
+            <div class="col-md-3">
+                <h1>Kimposs</h1>
+                <p>Tweets</p>
+            </div>
+            <div class="col-md-3">
+                <img src="{% static 'walmart/img/cat.jpg' %}" style="height:200px;" />
             </div>
         </div>
     </footer>
-    </body>
+    
     </html>
