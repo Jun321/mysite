@@ -40,12 +40,11 @@
             function alertTimeout(wait, type, isreload){
                 var ele = $('#alert_placeholder').children('.alert:first-child')
                 ele.addClass('animated ' + type)
-                setTimeout(function(){
-                    if(isreload)
-                        window.location.reload(true);
-                    else
-                        ele.addClass('animated fadeOut');
-                }, wait);
+				if(isreload){
+					setTimeout(function(){
+					    window.location.reload(true);
+					}, wait);
+				}
             }
 
     		$(document).ready(function(){
