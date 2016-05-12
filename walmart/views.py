@@ -32,7 +32,7 @@ def login_method(request):
 		else:
 			return JsonResponse({'status':'warn','message':'your form is not valid'})
 
-@login_required(login_url='/walmart')
+
 def logout_method(request):
     logout(request)
     return redirect('/walmart')
