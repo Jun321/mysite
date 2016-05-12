@@ -49,14 +49,32 @@
 				}
             }
          $(document).ready(function(){
-			$.notify({
-    					// options
-    					message: 'Welcome to the Data house!',
-    					target: '_self'
-    				},{
-    					// settings
-    					type: 'danger'
-    				});
+    			$.notify({
+        					// options
+        					message: {% if user.is_authenticated %}
+                                        'Welcome to the Data house, {{ user.username }} !'
+                                     {% else %}
+                                        'Welcome, Let\'s start !'
+                                     {% endif %},
+        					target: '_self'
+        				},{
+        					// settings
+        					type:    {% if user.is_authenticated %}
+                                        'success'
+                                     {% else %}
+                                        'info'
+                                     {% endif %},
+                            delay: 1000,
+                            placement: {
+                                from: "top",
+                                align: "center"
+                            },
+                            animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutUp'
+                            },
+        				});
+
                 $.ajaxSetup({
     				data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
     			});
@@ -185,12 +203,12 @@
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <label for="username">Username:</label>
-                                    <input type="text" class="form-control" id="id_username" name="username">
+                                    <input type="text" class="form-control" id="id_username" name="username" placeholder="Username">
     						    </div>
 
                                 <div class="form-group">
                                     <label for="pwd">Password:</label>
-                                    <input type="password" class="form-control" id="id_password" name="password">
+                                    <input type="password" class="form-control" id="id_password" name="password" placeholder="Password">
     						    </div>
 
                                 <div id = "alert_placeholder"></div>
